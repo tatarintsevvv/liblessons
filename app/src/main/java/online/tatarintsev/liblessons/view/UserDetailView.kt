@@ -6,6 +6,6 @@ import moxy.viewstate.strategy.StateStrategyType
 
 
 @StateStrategyType(AddToEndSingleStrategy::class)
-interface MainView : MvpView {
-
+interface UserDetailView : MvpView {
+    fun init()
 }

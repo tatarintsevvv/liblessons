@@ -1,14 +1,18 @@
 package online.tatarintsev.liblessons.presenter
 
-import android.os.Bundle
+import com.github.terrakok.cicerone.Router
+import moxy.MvpPresenter
 import online.tatarintsev.liblessons.view.MainView
+import online.tatarintsev.liblessons.presenter.screens.IScreens
 
-interface MainPresenter {
-    fun onCreate(savedInstanceState: Bundle?)
-    fun onSaveInstanceState(outState: Bundle)
+class MainPresenter(val router: Router, val screens: IScreens) : MvpPresenter<MainView>() {
 
-    fun onAttachView(view: MainView)
-    fun onDetachView()
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        router.replaceScreen(screens.users())
+    }
 
-    fun onUserAction(count: Int)
+    fun backClicked() {
+        router.exit()
+    }
 }
