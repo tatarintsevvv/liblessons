@@ -7,7 +7,6 @@ import moxy.ktx.moxyPresenter
 import online.tatarintsev.liblessons.App
 import online.tatarintsev.liblessons.R
 import online.tatarintsev.liblessons.databinding.ActivityMainBinding
-import online.tatarintsev.liblessons.view.MainView
 import online.tatarintsev.liblessons.presenter.MainPresenter
 import online.tatarintsev.liblessons.presenter.screens.AndroidScreens
 
@@ -23,6 +22,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         super.onCreate(savedInstanceState)
         vb = ActivityMainBinding.inflate(layoutInflater)
         setContentView(vb?.root)
+
     }
 
     override fun onResumeFragments() {

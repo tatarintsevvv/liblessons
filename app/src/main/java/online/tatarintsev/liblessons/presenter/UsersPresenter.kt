@@ -36,9 +36,17 @@ class UsersPresenter(val usersRepo: GithubUsersRepo, val router: Router) : MvpPr
     }
 
     fun loadData() {
-        val users = usersRepo.getUsers()
-        usersListPresenter.users.addAll(users)
-        viewState.updateList()
+
+        var users: MutableList<GithubUser> = mutableListOf()
+            usersRepo.getUsers()
+            .subscribe({ list ->
+                users = list.toMutableList()
+                usersListPresenter.users.addAll(users)
+                viewState.updateList()
+            }, {
+                println("onError: ${it.message}")
+            }
+            )
     }
 
     fun backPressed(): Boolean {
