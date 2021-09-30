@@ -10,9 +10,9 @@ import online.tatarintsev.liblessons.view.MainView
 
 class MainActivity: AppCompatActivity(), MainView {
 
-    private var currencyActivityState: MainActivityState = MainActivityState
+    private var currencyActivityState: MainActivityState = MainActivityState()
 
-    private lateinit var presenter: MainPresenter
+    private var presenter: MainPresenter? = null
 
     private var vb: ActivityMainBinding? = null
 
@@ -27,7 +27,7 @@ class MainActivity: AppCompatActivity(), MainView {
         // при следующем обращении вернётся уже созданный презентер,
         // в котором можно хранить необходимые данные
         presenter = currencyActivityState.getPresenter()
-        presenter.onCreate(savedInstanceState)
+        presenter?.onCreate(savedInstanceState)
 
 
         val listener = View.OnClickListener {
@@ -39,7 +39,7 @@ class MainActivity: AppCompatActivity(), MainView {
             }
             // не по идеологии модели, ввожу метод updaeCounter
             //(it as Button).text = presenter.onUserAction(count).toString()
-            presenter.onUserAction(count)
+            presenter?.onUserAction(count)
         }
 
         vb?.btnCounter1?.setOnClickListener(listener)
@@ -65,7 +65,7 @@ class MainActivity: AppCompatActivity(), MainView {
     override fun onSaveInstanceState(outState: Bundle) {
         // одним из вариантов сохранения данных, переживающих уничтожение процесса
         // является использование Bundle. Это не очень чисто архитектурно, но можно допустить в качестве исключения
-        presenter.onSaveInstanceState(outState)
+        presenter?.onSaveInstanceState(outState)
 
         super.onSaveInstanceState(outState)
     }

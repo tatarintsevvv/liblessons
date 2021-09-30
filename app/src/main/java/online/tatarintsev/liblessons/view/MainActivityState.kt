@@ -4,7 +4,7 @@ import online.tatarintsev.liblessons.model.CountersModelImpl
 import online.tatarintsev.liblessons.presenter.MainPresenter
 import online.tatarintsev.liblessons.presenter.MainPresenterImpl
 
-object MainActivityState {
+class MainActivityState {
 
     private var presenter: MainPresenter? = null
 
